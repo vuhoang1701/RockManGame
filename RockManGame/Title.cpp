@@ -33,7 +33,7 @@ Title::Title(int id,Sprite *sprite,int x,int y)
 void Title::Render(LPD3DXSPRITE spritehandle, CCamera * cam)
 {
 	D3DXVECTOR3 pos = cam->GetPointTransform(this->x,this->y);
-	this->sprite->Render(spritehandle,pos);
+	this->sprite->RenderTile(spritehandle,pos);
 	
 
 }

@@ -138,10 +138,10 @@ int CGame::Game_Init()
 		return 0;
 	back = new Texture(d3ddev);
 	back->LoadTexture("..\\Data\\background.jpg",NULL, 1537, 224);
-	
+	t = new TitleManager();
+	t->InitListTitle(d3ddev);
 	Rockman = new CRockman(400,sprite_handle,d3ddev);
-	obj = new CGameObj(0,100, 100, Rockman->_Image);
-	rm = new CRockmanObj(0,30,30,Rockman->_Image,0.5,2);
+	rm = new CRockmanObj(0,30,50,Rockman->_Image,2,0);
 	if(back->LoadTexture("..\\Data\\background.jpg",NULL, 1537, 224) == NULL)
 		return 0;
 	Cam = new CCamera();
@@ -181,13 +181,29 @@ void CGame::Game_Run()
 						D3DXVECTOR3 pos = Cam->GetPointTransform(0,224);
 						sprite_handle->Begin(D3DXSPRITE_ALPHABLEND);
 						rm->Update(Cam, now);
-						sprite_handle->Draw(
+
+						for(int i = 72 - Cam->_pos.y/16;i <= 72 - (Cam->_pos.y - Cam->_height)/16; i++)
+							for(int j = Cam->_pos.x/16;j <=(Cam->_pos.x + Cam->_width)/16 + 1;j ++)
+							{
+								for(int k = 0;k < t->listTitle.size();k++)
+								{
+									if(t->mapTitle[i][j] == t->listTitle.at(k)->id)
+									{
+										t->listTitle.at(k)->x = j*16 ;
+										t->listTitle.at(k)->y = 73*16 - i*16;
+										t->listTitle.at(k)->Render(sprite_handle,Cam);
+									}
+								}
+							}
+							
+							Rockman->Render(sprite_handle, Cam);
+						/*sprite_handle->Draw(
 						back->GetTexture(),
 						NULL,
 						NULL,
 						&pos,
 						D3DCOLOR_XRGB(255,255,255)
-						);
+						);*/
 						//obj->Render(sprite_handle, Cam);
 						//[Rockman->Update(Cam);
 						//Rockman->Render(sprite_handle, Cam);
