@@ -7,6 +7,8 @@ protected:
 	int countdelay;
 	int delay;
 	int timerun;
+	float gravity;
+	bool onGround;
 public:
 	CRockmanObj(void);
 	CRockmanObj(int id, int x, int y, Sprite* spr, float velx, float vely);

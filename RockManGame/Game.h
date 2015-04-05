@@ -7,6 +7,7 @@
 #include "Surface.h"
 #include "GameObj.h"
 #include "RockmanObj.h"
+#include "TitleManager.h"
 using namespace std;
 #define SCREEN_HEIGHT 224
 #define SCREEN_WIDTH 256
@@ -15,6 +16,7 @@ class CGame
 { 
 private:
 
+	TitleManager *t;
 	Texture* back;
 	CRockmanObj* rm;
 	CRockman* Rockman;
