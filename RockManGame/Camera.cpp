@@ -14,8 +14,9 @@ CCamera::~CCamera(void)
 {
 }
 
-void CCamera::Update(int x)
+void CCamera::Update(int x,int y)
 {
+	_pos.y = y + _height - 50;
 	_pos.x = x - _width/2;
 	if(_pos.x < 0)
 		_pos.x = 0;

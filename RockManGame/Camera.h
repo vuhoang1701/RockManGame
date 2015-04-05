@@ -10,7 +10,7 @@ public:
 	int _height;
 	CCamera();
 	~CCamera(void);
-	void Update(int x);
+	void Update(int x,int y);
 	D3DXVECTOR3 GetPointTransform(int x, int y);
 	
 };
